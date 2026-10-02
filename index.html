@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bessem Kortas — Frontend Team Lead & Design-System Architect</title>
+<meta name="description" content="Portfolio of Bessem Kortas — Senior Software Engineer, Frontend Team Lead. Design systems, SDKs and frontend architecture for banking platforms.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script type="importmap">
+{ "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js" } }
+</script>
+</head>
+<body>
+
+<div id="loader"><div class="loader-inner"><span class="mono">compiling design tokens</span><b id="loader-pct">0%</b><i></i></div></div>
+
+<canvas id="scene" aria-hidden="true"></canvas>
+<div id="labels" aria-hidden="true"></div>
+<div class="cursor" aria-hidden="true"></div>
+
+<header class="nav">
+  <a href="#hero" class="logo" aria-label="Bessem Kortas — home">BK<span>.</span></a>
+  <nav aria-label="Sections">
+    <a href="#profile">Profile</a>
+    <a href="#experience">Experience</a>
+    <a href="#system">System</a>
+    <a href="#work">Lab</a>
+    <a href="#skills">Skills</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <div class="nav-actions">
+    <button id="palette-btn" class="chip mono" aria-label="Open command palette"><kbd>Ctrl</kbd><kbd>K</kbd></button>
+    <button id="theme-btn" class="chip" aria-label="Toggle dark / light mode"><span class="theme-dot"></span></button>
+  </div>
+</header>
+
+<aside class="rail" aria-hidden="true"><div class="rail-fill"></div></aside>
+
+<main>
+
+<!-- HERO -->
+<section id="hero" class="sec hero" data-cam="0">
+  <div class="wrap">
+    <p class="eyebrow mono"><span class="pulse"></span> Available for technical leadership roles · Tunisia</p>
+    <h1 class="title" aria-label="Bessem Kortas"><span class="line" data-split>Bessem</span><span class="line" data-split>Kortas</span></h1>
+    <p class="role mono"><span class="role-pre">&gt;</span> <span id="role-text">Frontend Team Lead</span><span class="caret"></span></p>
+    <p class="lede">I build the systems other engineers build on — <em>design systems, SDKs and frontend architecture</em> for banking, insurance and fintech platforms.</p>
+    <div class="cta">
+      <a class="btn primary" href="#profile">Enter the system <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg></a>
+      <a class="btn" href="Bessem_Kortas_CV.pdf" download>Download CV</a>
+    </div>
+  </div>
+  <div class="scroll-hint mono">scroll to fly <i></i></div>
+</section>
+
+<!-- PROFILE -->
+<section id="profile" class="sec" data-cam="1">
+  <div class="wrap left">
+    <p class="kicker mono">01 — Profile</p>
+    <h2 class="h2 reveal">Seven years of shipping<br>banking-grade frontends.</h2>
+    <p class="body reveal">Senior Software Engineer and Frontend Team Lead since 2023. I specialise in frontend architecture — React, React Native, Angular, TypeScript — and in building design systems and SDKs. I own architecture proposals, implementation decisions and merge review for a multi-application banking product, and I'm growing my full-stack range through Node.js, NestJS and Spring Boot projects.</p>
+    <p class="body reveal">Day to day I use AI-assisted tooling (GitHub Copilot, Claude Code) — structuring context and skills to get better results with fewer tokens.</p>
+
+    <div class="metrics">
+      <div class="metric glass tilt reveal"><b data-count="7" data-suffix="+">7+</b><span>years in banking, insurance &amp; fintech</span></div>
+      <div class="metric glass tilt reveal"><b data-count="30" data-prefix="~" data-suffix="%">~30%</b><span>faster delivery with the design-system SDK</span></div>
+      <div class="metric glass tilt reveal"><b data-count="5" data-suffix="+">5+</b><span>banking projects on the SDK</span></div>
+      <div class="metric glass tilt reveal"><b data-count="12" data-prefix="~">~12</b><span>projects reusing internal SDKs via Nexus</span></div>
+      <div class="metric glass tilt reveal"><b>4–10</b><span>engineers led, plus 3 integration departments</span></div>
+      <div class="metric glass tilt reveal"><b data-count="3">3</b><span>sectors, one codebase: retail, corporate, microfinance</span></div>
+    </div>
+    <p class="note mono reveal">↳ The ~30% figure comes from an internal post-delivery person-day cost analysis.</p>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience" class="sec" data-cam="2">
+  <div class="wrap right">
+    <p class="kicker mono">02 — Experience</p>
+    <h2 class="h2 reveal">From individual contributor<br>to leading the platform.</h2>
+
+    <ol class="timeline">
+      <li class="job glass tilt reveal">
+        <div class="job-head"><h3>Frontend Team Lead</h3><span class="mono when">2023 — Present</span></div>
+        <p class="org mono">Proxym · R&amp;D · Bankerise product</p>
+        <ul>
+          <li>Kept architecture and code quality consistent across <b>4 apps</b> — end-user, bank-agent, admin dashboard, business — through architecture proposals and merge review.</li>
+          <li>Cut delivery time by <b>~30%</b> by rolling out a modular design-system SDK (theming, tokens, dark/light) across 5+ banking projects.</li>
+          <li>Published internal SDKs to Nexus — including analytics and HTTP handling — driving reuse across ~12 banking projects.</li>
+          <li>Made one platform serve <b>retail, corporate and microfinance</b>; helped introduce a new API Gateway with reworked error handling.</li>
+          <li>Closed a banking-API security gap: <b>Keycloak</b>, request signing for trusted device/app, and Facia AI for OCR + facial recognition.</li>
+          <li>Run sprint planning, QA handoff, GitLab CI pipelines and onboarding workshops for new engineers.</li>
+        </ul>
+        <div class="tags"><span>React</span><span>React Native</span><span>TypeScript</span><span>Redux Saga</span><span>Zustand</span><span>Chakra UI</span><span>Keycloak</span><span>GitLab CI</span></div>
+      </li>
+
+      <li class="job glass tilt reveal">
+        <div class="job-head"><h3>Senior Software Engineer</h3><span class="mono when">09/2019 — 2023</span></div>
+        <p class="org mono">Proxym · banking, insurance &amp; corporate-banking engagements</p>
+        <ul>
+          <li>Led a <b>5-developer team</b> building an agent dashboard, journey tracking and a 360° customer view.</li>
+          <li>Migrated a large codebase from <b>Angular to React</b> and from multi-repo to a monorepo (Nx + Lerna).</li>
+          <li>Introduced Redux Saga, led the move to Keycloak, adopted Chakra UI as the design system.</li>
+          <li>Delivered transfers and beneficiary management for <b>Barwa Bank / Dukhan Bank</b>, collaborating remotely with the core-banking team in Qatar.</li>
+          <li>Built a FullCalendar scheduling platform; recommended NgRx and extracted Android/iOS builds via Cordova.</li>
+        </ul>
+        <div class="tags"><span>Angular</span><span>React</span><span>NgRx</span><span>Storybook</span><span>Jest</span><span>Cypress</span><span>SonarQube</span></div>
+      </li>
+
+      <li class="job glass tilt reveal slim">
+        <div class="job-head"><h3>Software Developer</h3><span class="mono when">02 — 07/2019</span></div>
+        <p class="org mono">ENVAST</p>
+        <p class="small">Led the integration of a mobile app into a gamified web platform for students aged 6–12, their parents and teachers.</p>
+      </li>
+      <li class="job glass tilt reveal slim">
+        <div class="job-head"><h3>Intern</h3><span class="mono when">07 — 08/2018</span></div>
+        <p class="org mono">Alt Tab Studio</p>
+        <p class="small">Contributed to a working to-do web application in a small development team.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- SYSTEM -->
+<section id="system" class="sec" data-cam="3">
+  <div class="wrap">
+    <p class="kicker mono">03 — The Bankerise system</p>
+    <h2 class="h2 reveal">One platform. Four apps.<br>Hover to fly to one.</h2>
+    <p class="body narrow reveal">The scene behind you is the product I architect: a configurable platform core, four applications in orbit, and a ring of internal SDKs published to Nexus. Signed requests pulse along each link.</p>
+
+    <div class="apps">
+      <article class="app glass reveal" data-app="0" tabindex="0"><span class="mono idx">01</span><h3>End-user</h3><p>The customer-facing banking app.</p></article>
+      <article class="app glass reveal" data-app="1" tabindex="0"><span class="mono idx">02</span><h3>Bank agent</h3><p>The agent-side application.</p></article>
+      <article class="app glass reveal" data-app="2" tabindex="0"><span class="mono idx">03</span><h3>Admin dashboard</h3><p>Back-office administration.</p></article>
+      <article class="app glass reveal" data-app="3" tabindex="0"><span class="mono idx">04</span><h3>Business</h3><p>The corporate / business application.</p></article>
+    </div>
+
+    <div class="under reveal">
+      <div class="glass"><b class="mono">Design-system SDK</b><span>Modular theming, tokens, dark/light mode</span></div>
+      <div class="glass"><b class="mono">Security layer</b><span>Keycloak · request signing · Facia AI</span></div>
+      <div class="glass"><b class="mono">Platform layer</b><span>Configurable for retail, corporate, microfinance · API Gateway</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- WORK / LAB -->
+<section id="work" class="sec" data-cam="4">
+  <div class="wrap right">
+    <p class="kicker mono">04 — The lab</p>
+    <h2 class="h2 reveal">Full-stack, built on my own time.</h2>
+    <p class="body narrow reveal">Self-directed projects to develop hands-on backend and full-stack range. Hover a card to inspect the model.</p>
+    <div class="projects">
+      <article class="proj glass tilt reveal" data-proj="0" tabindex="0">
+        <div class="proj-head"><h3>Real-time chat</h3><span class="mono when">2020</span></div>
+        <p>A working messaging app: React frontend, Node.js/Express + WebSocket backend, MongoDB for persistence.</p>
+        <div class="tags"><span>React</span><span>Node.js</span><span>Express</span><span>WebSocket</span><span>MongoDB</span></div>
+      </article>
+      <article class="proj glass tilt reveal" data-proj="1" tabindex="0">
+        <div class="proj-head"><h3>Task manager <small>Jira-style</small></h3><span class="mono when">2021</span></div>
+        <p>Delivered solo: task creation and assignment, estimation, sprints and status tracking.</p>
+        <div class="tags"><span>Spring Boot</span><span>React</span></div>
+      </article>
+      <article class="proj glass tilt reveal" data-proj="2" tabindex="0">
+        <div class="proj-head"><h3>Vehicle dashboard</h3><span class="mono when">2022</span></div>
+        <p>Three-developer team — I owned the frontend build.</p>
+        <div class="tags"><span>NestJS</span><span>Angular</span></div>
+      </article>
+    </div>
+    <p class="note mono reveal">↳ Also: Docker images, and Kubernetes fundamentals — ingress configuration, ArgoCD dashboard, pod/log inspection.</p>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" class="sec" data-cam="5">
+  <div class="wrap left">
+    <p class="kicker mono">05 — Skills</p>
+    <h2 class="h2 reveal">A sphere of tools.<br>Hover a group to light it up.</h2>
+    <div id="skill-groups" class="skill-groups"></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="sec contact" data-cam="6">
+  <div class="wrap center">
+    <p class="kicker mono">06 — Contact</p>
+    <h2 class="h2 big reveal">Let's build the next<br>platform <em>together.</em></h2>
+    <a class="mail reveal" href="mailto:Bessem.kortas.1@gmail.com">Bessem.kortas.1@gmail.com</a>
+    <div class="cta reveal">
+      <a class="btn primary" href="https://www.linkedin.com/in/bessem-kortas" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="btn" href="https://github.com/Bessem-kortas" target="_blank" rel="noopener">GitHub</a>
+      <a class="btn" href="tel:+21656401663">+216 56 401 663</a>
+      <a class="btn" href="Bessem_Kortas_CV.pdf" download>CV (PDF)</a>
+    </div>
+    <div class="edu glass reveal">
+      <div><b class="mono">2022</b><span>National Diploma in Software Engineering — EPI</span></div>
+      <div><b class="mono">2019</b><span>Bachelor's in Computer Sciences — ISSAT</span></div>
+      <div><b class="mono">2016</b><span>High School Degree in Computer Sciences</span></div>
+      <div><b class="mono">Lang</b><span>English · French · Arabic</span></div>
+    </div>
+    <p class="foot mono">© 2026 Bessem Kortas · Tunisia · Built with Three.js</p>
+  </div>
+</section>
+
+</main>
+
+<div id="palette" class="palette" hidden>
+  <div class="palette-box glass" role="dialog" aria-label="Command palette">
+    <input id="palette-input" class="mono" placeholder="Jump to…  (type, ↑ ↓, Enter)" autocomplete="off">
+    <ul id="palette-list"></ul>
+  </div>
+</div>
+
+<script type="module" src="app.js"></script>
+</body>
+</html>
