@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import { t, setLang, getLang, onLang, detectLang, LANGS } from './i18n.js';
 
 const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => [...r.querySelectorAll(s)];
@@ -34,31 +35,36 @@ $$('[data-split]').forEach(el => {
   const t = el.textContent; el.textContent = '';
   [...t].forEach((c, i) => { const s = document.createElement('span'); s.className = 'ch'; s.style.setProperty('--i', i); s.textContent = c; el.appendChild(s); });
 });
-const roles = ['Frontend Team Lead', 'Design-System Architect', 'SDK Builder', 'Full-Stack Capable', 'AI-Assisted Engineer'];
-(() => {
-  const el = $('#role-text'); let i = 0, j = roles[0].length, del = true;
+let roleState = { i: 0, j: 0, del: true, timer: 0 };
+const roleEl = $('#role-text');
+function startRoles() {
+  clearTimeout(roleState.timer);
+  const roles = t('roles'); roleState = { i: 0, j: roles[0].length, del: true, timer: 0 };
+  roleEl.textContent = roles[0];
   if (reduce) return;
   const tick = () => {
-    const w = roles[i];
-    if (del) { j--; if (j <= 0) { del = false; i = (i + 1) % roles.length; } }
-    else { j++; if (j >= roles[i].length) { del = true; el.textContent = roles[i]; return setTimeout(tick, 1800); } }
-    el.textContent = roles[i].slice(0, Math.max(j, 0)) || ' ';
-    setTimeout(tick, del ? 28 : 55);
+    const rs = t('roles'), S = roleState;
+    if (S.del) { S.j--; if (S.j <= 0) { S.del = false; S.i = (S.i + 1) % rs.length; } }
+    else { S.j++; if (S.j >= rs[S.i].length) { S.del = true; roleEl.textContent = rs[S.i]; S.timer = setTimeout(tick, 1800); return; } }
+    roleEl.textContent = rs[S.i].slice(0, Math.max(S.j, 0)) || ' ';
+    S.timer = setTimeout(tick, S.del ? 28 : 55);
   };
-  setTimeout(tick, 2600);
-})();
+  roleState.timer = setTimeout(tick, 2600);
+}
+onLang(startRoles);
+
 
 /* ───────────── skills data ───────────── */
 const SKILLS = [
-  ['Frontend', ['React.js', 'React Native', 'Angular', 'TypeScript', 'JavaScript', 'HTML5', 'CSS3', 'Tailwind CSS', 'Chakra UI', 'Taiga UI']],
-  ['Architecture', ['Design Systems', 'SDK Development', 'Micro Frontends', 'Redux Saga', 'NgRx', 'Zustand']],
-  ['Mobile', ['Cordova', 'Capacitor', 'Android / iOS builds']],
-  ['Backend', ['Node.js', 'Express.js', 'NestJS', 'Spring Boot', 'WebSocket', 'REST APIs', 'MongoDB']],
-  ['Security', ['Keycloak', 'Request signing', 'Device trust', 'Facia AI']],
-  ['Quality', ['Jest', 'Cypress', 'Puppeteer', 'Storybook', 'SonarQube']],
-  ['DevOps', ['Docker', 'Kubernetes', 'GitLab CI', 'GitHub', 'NGINX', 'Nexus']],
-  ['Platforms', ['Flowable BPMN', 'Formio.js']],
-  ['AI-assisted', ['GitHub Copilot', 'Claude Code', 'Context design', 'Token optimization']],
+  ['cat.0', ['React.js', 'React Native', 'Angular', 'TypeScript', 'JavaScript', 'HTML5', 'CSS3', 'Tailwind CSS', 'Chakra UI', 'Taiga UI']],
+  ['cat.1', ['Design Systems', 'SDK Development', 'Micro Frontends', 'Redux Saga', 'NgRx', 'Zustand']],
+  ['cat.2', ['Cordova', 'Capacitor', 'Android / iOS builds']],
+  ['cat.3', ['Node.js', 'Express.js', 'NestJS', 'Spring Boot', 'WebSocket', 'REST APIs', 'MongoDB']],
+  ['cat.4', ['Keycloak', 'Request signing', 'Device trust', 'Facia AI']],
+  ['cat.5', ['Jest', 'Cypress', 'Puppeteer', 'Storybook', 'SonarQube']],
+  ['cat.6', ['Docker', 'Kubernetes', 'GitLab CI', 'GitHub', 'NGINX', 'Nexus']],
+  ['cat.7', ['Flowable BPMN', 'Formio.js']],
+  ['cat.8', ['GitHub Copilot', 'Claude Code', 'Context design', 'Token optimization']],
 ];
 const catHue = i => i / SKILLS.length;
 const catColor = (i, out = new THREE.Color()) => out.setHSL(catHue(i), .75, isLight ? .36 : .7);
@@ -140,7 +146,7 @@ if (renderer) {
     const link = new THREE.Line(lg, track(new THREE.LineBasicMaterial({ transparent: true, opacity: .28 }), 'a'));
     scene.add(link);
 
-    const tag = document.createElement('div'); tag.className = 'tag'; tag.textContent = d.name; labelsEl.appendChild(tag);
+    const tag = document.createElement('div'); tag.className = 'tag'; tag.dataset.i18n = 'sys.a' + i + '.n'; tag.textContent = t(tag.dataset.i18n); labelsEl.appendChild(tag);
     const pos = new THREE.Vector3();
     labelDefs.push({ el: tag, pos, sec: 3, app: i });
     return { ...d, g, w, s, link, pos, scale: 1 };
@@ -195,8 +201,8 @@ if (renderer) {
     const hub = new THREE.Mesh(new THREE.SphereGeometry(.16, 12, 12), track(new THREE.MeshBasicMaterial(), 'b'));
     g.userData.needle = needle;
     g.add(arc, arc2, needle, hub); lab.add(g); labItems.push(g); }
-  ['Real-time chat', 'Task manager', 'Vehicle dashboard'].forEach((t, i) => {
-    const tag = document.createElement('div'); tag.className = 'tag'; tag.textContent = t; labelsEl.appendChild(tag);
+  [0, 1, 2].forEach(i => {
+    const tag = document.createElement('div'); tag.className = 'tag'; tag.dataset.i18n = 'lab.p' + i + '.t'; tag.textContent = t(tag.dataset.i18n); labelsEl.appendChild(tag);
     labelDefs.push({ el: tag, pos: new THREE.Vector3(LAB.x + (i - 1) * 7, LAB.y - 3.6, LAB.z), sec: 4, proj: i });
   });
 
@@ -232,13 +238,14 @@ if (renderer) {
   const sgWrap = $('#skill-groups');
   SKILLS.forEach(([cat, list], i) => {
     const d = document.createElement('div'); d.className = 'sg glass reveal';
-    d.innerHTML = `<h4><i></i>${cat}</h4><p>${list.join(' · ')}</p>`;
+    d.innerHTML = `<h4><i></i><span data-cat="${cat}"></span></h4><p>${list.join(' · ')}</p>`;
     d.addEventListener('pointerenter', () => skillFocus = i);
     d.addEventListener('pointerleave', () => skillFocus = -1);
     sgWrap.appendChild(d);
   });
-  const sgRefresh = () => $$('.sg').forEach((d, i) => d.style.setProperty('--c', '#' + catColor(i).getHexString()));
-  themeHooks.push(sgRefresh);
+  const sgRefresh = () => { $$('[data-cat]').forEach(el => el.textContent = t(el.dataset.cat)); };
+  const sgColors = () => $$('.sg').forEach((d, i) => d.style.setProperty('--c', '#' + catColor(i).getHexString()));
+  themeHooks.push(sgColors); onLang(sgRefresh);
 
   applyTheme();
 
@@ -415,18 +422,19 @@ if (!isTouch) {
 
 /* ───────────── command palette ───────────── */
 const pal = $('#palette'), pin = $('#palette-input'), plist = $('#palette-list');
+const SECT = [['hero', '#hero'], ['profile', '#profile'], ['experience', '#experience'], ['system', '#system'], ['lab', '#work'], ['skills', '#skills'], ['contact', '#contact']];
 const cmds = [
-  ...[['Hero', '#hero'], ['Profile', '#profile'], ['Experience', '#experience'], ['The Bankerise system', '#system'], ['The lab (projects)', '#work'], ['Skills', '#skills'], ['Contact', '#contact']].map(([n, h]) => ({ n, k: 'section', run: () => document.querySelector(h).scrollIntoView({ behavior: 'smooth', block: 'center' }) })),
-  { n: 'Toggle dark / light', k: 'theme', run: toggleTheme },
-  { n: 'Download CV', k: 'file', run: () => { const a = document.createElement('a'); a.href = 'Bessem_Kortas_CV.pdf'; a.download = ''; a.click(); } },
-  { n: 'Send an email', k: 'contact', run: () => location.href = 'mailto:Bessem.kortas.1@gmail.com' },
-  { n: 'Open LinkedIn', k: 'link', run: () => open('https://www.linkedin.com/in/bessem-kortas', '_blank', 'noopener') },
-  { n: 'Open GitHub', k: 'link', run: () => open('https://github.com/Bessem-kortas', '_blank', 'noopener') },
+  ...SECT.map(([n, h]) => ({ n: 'pal.' + n, k: 'section', run: () => document.querySelector(h).scrollIntoView({ behavior: 'smooth', block: 'center' }) })),
+  { n: 'pal.theme', k: 'theme', run: toggleTheme },
+  { n: 'pal.cv', k: 'file', run: () => { const a = document.createElement('a'); a.href = 'Bessem_Kortas_CV.pdf'; a.download = ''; a.click(); } },
+  { n: 'pal.mail', k: 'contact', run: () => location.href = 'mailto:Bessem.kortas.1@gmail.com' },
+  { n: 'pal.li', k: 'link', run: () => open('https://www.linkedin.com/in/bessem-kortas', '_blank', 'noopener') },
+  { n: 'pal.gh', k: 'link', run: () => open('https://github.com/Bessem-kortas', '_blank', 'noopener') },
 ];
 let sel = 0, shown = cmds;
 function renderPal() {
-  const q = pin.value.trim().toLowerCase(); shown = cmds.filter(c => c.n.toLowerCase().includes(q) || c.k.includes(q)); sel = Math.min(sel, Math.max(shown.length - 1, 0));
-  plist.innerHTML = shown.map((c, i) => `<li class="${i === sel ? 'sel' : ''}" data-i="${i}">${c.n}<small>${c.k}</small></li>`).join('');
+  const q = pin.value.trim().toLowerCase(); shown = cmds.filter(c => t(c.n).toLowerCase().includes(q) || t('pal.k.' + c.k).toLowerCase().includes(q)); sel = Math.min(sel, Math.max(shown.length - 1, 0));
+  plist.innerHTML = shown.map((c, i) => `<li class="${i === sel ? 'sel' : ''}" data-i="${i}">${t(c.n)}<small>${t('pal.k.' + c.k)}</small></li>`).join('');
 }
 function openPal() { pal.hidden = false; pin.value = ''; sel = 0; renderPal(); pin.focus(); }
 function closePal() { pal.hidden = true; }
@@ -454,3 +462,7 @@ addEventListener('keydown', e => {
     if (p >= 99.5 && performance.now() - t0 > 900) { clearInterval(iv); L.classList.add('done'); document.body.classList.add('ready'); }
   }, 30);
 })();
+
+/* ───────────── i18n bootstrap ───────────── */
+$$('.lang button').forEach(b => b.addEventListener('click', () => setLang(b.dataset.lang)));
+setLang(detectLang(), false);
